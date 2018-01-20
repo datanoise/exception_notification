@@ -47,7 +47,7 @@ module ExceptionNotifier
 
             @exception = exception
             @options   = options.reverse_merge(default_options).symbolize_keys
-            @backtrace = exception.backtrace || []
+            @backtrace  = exception.backtrace ? clean_backtrace(exception) : []
             @timestamp = Time.current
             @sections  = @options[:background_sections]
             @data      = options[:data] || {}
